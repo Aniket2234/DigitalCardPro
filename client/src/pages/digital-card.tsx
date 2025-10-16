@@ -144,38 +144,6 @@ export default function DigitalCard() {
             {/* Divider */}
             <div className="border-t border-border" />
 
-            {/* Contact Information */}
-            <div className="space-y-2">
-              {contactInfo.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.label === "Website" || item.label === "Location" ? "_blank" : undefined}
-                    rel={item.label === "Website" || item.label === "Location" ? "noopener noreferrer" : undefined}
-                    className="flex items-start gap-3 group hover-elevate active-elevate-2 rounded-md p-2 -mx-2 transition-all duration-200"
-                    data-testid={item.testId}
-                  >
-                    <div className="flex-shrink-0 mt-0.5">
-                      <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
-                        {item.label}
-                      </p>
-                      <p className="text-sm text-foreground font-medium break-words group-hover:text-primary transition-colors">
-                        {item.value}
-                      </p>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-border" />
-
             {/* Services Section */}
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-5 space-y-3 border border-primary/20">
               <h2 
@@ -208,6 +176,38 @@ export default function DigitalCard() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-border" />
+
+            {/* Contact Information */}
+            <div className="space-y-2">
+              {contactInfo.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.label === "Website" || item.label === "Location" ? "_blank" : undefined}
+                    rel={item.label === "Website" || item.label === "Location" ? "noopener noreferrer" : undefined}
+                    className="flex items-start gap-3 group hover-elevate active-elevate-2 rounded-md p-2 -mx-2 transition-all duration-200"
+                    data-testid={item.testId}
+                  >
+                    <div className="flex-shrink-0 mt-0.5">
+                      <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
+                        {item.label}
+                      </p>
+                      <p className="text-sm text-foreground font-medium break-words group-hover:text-primary transition-colors">
+                        {item.value}
+                      </p>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
