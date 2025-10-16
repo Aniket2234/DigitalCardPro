@@ -1,6 +1,6 @@
 import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import { SiFacebook, SiInstagram, SiLinkedin, SiX } from "react-icons/si";
-import logoUrl from "@assets/logo_1760615598466.png";
+import logoUrl from "@assets/logo_1760617115018.png";
 
 export default function DigitalCard() {
   const contactInfo = [
