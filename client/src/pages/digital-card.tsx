@@ -213,7 +213,7 @@ export default function DigitalCard() {
           >
             {/* Front of Card */}
             <div
-              className="bg-card border border-card-border rounded-2xl shadow-2xl overflow-hidden"
+              className="bg-card border-4 border-blue-400 rounded-2xl shadow-2xl overflow-hidden"
               style={{ backfaceVisibility: "hidden" }}
               data-testid="card-business"
             >
@@ -251,13 +251,13 @@ export default function DigitalCard() {
               </div>
 
               {/* Owner Profile Photo - Pure White Background */}
-              <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 bg-white">
+              <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 bg-white pb-6">
                 {/* Horizontal Blue Line crossing through center of profile */}
                 <div className="absolute left-0 right-0 top-12 sm:top-14 md:top-16 flex items-center justify-center pointer-events-none z-0">
                   <div className="w-full h-1 bg-blue-400" />
                 </div>
                 
-                <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6 mb-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6">
                   <div className="relative z-10">
                     <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-blue-400 bg-card overflow-hidden shadow-xl">
                       <img 
@@ -287,7 +287,7 @@ export default function DigitalCard() {
               </div>
 
               {/* Company Information */}
-              <div className="px-4 sm:px-6 pb-6 bg-white space-y-6">
+              <div className="px-4 sm:px-6 pb-6 pt-6 bg-white space-y-6">
                 {/* Company Name & Tagline */}
                 <div className="text-center">
                   <h2 
