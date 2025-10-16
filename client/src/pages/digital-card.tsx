@@ -330,8 +330,6 @@ export default function DigitalCard() {
                   })}
                 </div>
 
-                <div className="border-t border-border" />
-
                 {/* Contact Details - No WhatsApp */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <a
