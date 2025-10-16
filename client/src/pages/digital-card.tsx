@@ -4,7 +4,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useState, useRef } from "react";
 import logoUrl from "@assets/AIRAVATA TECHNOLOGIES LOGO_1760623809706.png";
 import bannerImage from "@assets/stock_images/modern_technology_ab_1ab0a508.jpg";
-import ownerPhoto from "@assets/stock_images/professional_busines_a226ab8a.jpg";
+import ownerPhoto from "@assets/SAIRAJIMG_1760623990534.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -33,7 +33,7 @@ export default function DigitalCard() {
 
   const ownerInfo = {
     name: "Owner Name",
-    role: "Founder & CEO",
+    role: "Co Founder",
     photo: ownerPhoto
   };
 
@@ -96,7 +96,7 @@ export default function DigitalCard() {
       name: "Instagram",
       icon: SiInstagram,
       href: "https://instagram.com",
-      color: "text-[#E1306C]",
+      color: "text-[#E4405F]",
       testId: "link-instagram"
     },
     {
@@ -219,38 +219,34 @@ export default function DigitalCard() {
             >
               {/* Banner/Cover Section */}
               <div className="relative h-48 sm:h-56 md:h-64 bg-white">
-                {/* Logo - no tint or effects */}
+                {/* Logo - no tint or effects - bigger size */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <img 
                     src={logoUrl} 
                     alt="Company Logo" 
-                    className="h-24 sm:h-32 md:h-40 w-auto object-contain"
+                    className="h-32 sm:h-40 md:h-48 w-auto object-contain"
                     data-testid="img-banner-logo"
                   />
                 </div>
 
-                {/* Action Buttons - Top Right */}
+                {/* Action Buttons - Top Right - transparent with black icons */}
                 <div className="absolute top-4 right-4 flex gap-2">
-                  <Button
+                  <button
                     onClick={() => setShowQR(true)}
-                    size="sm"
-                    className="bg-black hover:bg-black/80 text-white border-0"
+                    className="p-2 hover:bg-black/10 rounded-lg transition-colors"
                     data-testid="button-qr-code"
                     aria-label="Show QR Code"
                   >
-                    <QrCode className="w-4 h-4 sm:mr-2" />
-                    <span className="hidden sm:inline">QR</span>
-                  </Button>
-                  <Button
+                    <QrCode className="w-5 h-5 text-black" />
+                  </button>
+                  <button
                     onClick={handleShare}
-                    size="sm"
-                    className="bg-black hover:bg-black/80 text-white border-0"
+                    className="p-2 hover:bg-black/10 rounded-lg transition-colors"
                     data-testid="button-share"
                     aria-label="Share Card"
                   >
-                    <Share2 className="w-4 h-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Share</span>
-                  </Button>
+                    <Share2 className="w-5 h-5 text-black" />
+                  </button>
                 </div>
               </div>
 
@@ -296,16 +292,16 @@ export default function DigitalCard() {
                     {companyInfo.name}
                   </h2>
                   <p 
-                    className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wide mb-2"
-                    data-testid="text-company-type"
-                  >
-                    {companyInfo.type}
-                  </p>
-                  <p 
-                    className="text-sm sm:text-base text-primary italic font-medium"
+                    className="text-sm sm:text-base text-primary italic font-medium mb-2"
                     data-testid="text-tagline"
                   >
                     {companyInfo.tagline}
+                  </p>
+                  <p 
+                    className="text-xs sm:text-sm text-black uppercase tracking-wide"
+                    data-testid="text-company-type"
+                  >
+                    {companyInfo.type}
                   </p>
                 </div>
 
