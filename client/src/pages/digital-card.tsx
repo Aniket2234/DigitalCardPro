@@ -5,10 +5,10 @@ import { useState, useRef } from "react";
 import logoUrl from "@assets/AIRAVATA TECHNOLOGIES LOGO_1760623809706.png";
 import bannerImage from "@assets/stock_images/modern_technology_ab_1ab0a508.jpg";
 import ownerPhoto from "@assets/SAIRAJIMG_1760623990534.jpg";
-import googleLogo from "@assets/stock_images/google_logo_transpar_ec2a1d99.jpg";
-import amazonLogo from "@assets/stock_images/amazon_logo_transpar_8a6faae8.jpg";
-import teslaLogo from "@assets/stock_images/tesla_logo_transpare_8156eaa4.jpg";
-import nvidiaLogo from "@assets/stock_images/nvidia_logo_transpar_433683ad.jpg";
+import googleLogo from "@assets/image_1760628228490.png";
+import amazonLogo from "@assets/image_1760628360957.png";
+import teslaLogo from "@assets/image_1760628321153.png";
+import nvidiaLogo from "@assets/image_1760628385862.png";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -418,7 +418,7 @@ export default function DigitalCard() {
                 transform: "rotateY(180deg)"
               }}
             >
-              <div className="h-full overflow-y-auto p-4 sm:p-6">
+              <div className="h-full overflow-y-auto p-4 sm:p-6 bg-white">
                 {/* Flip Back Button */}
                 <div className="mb-6">
                   <Button
@@ -431,10 +431,36 @@ export default function DigitalCard() {
                   </Button>
                 </div>
 
+                {/* Services Section - Top Priority */}
+                <div className="mb-8">
+                  <h3 
+                    className="text-2xl sm:text-3xl font-extrabold text-blue-500 mb-6 text-center tracking-tight"
+                    data-testid="text-services-title"
+                  >
+                    Our Services
+                  </h3>
+                  <div className="space-y-3">
+                    {services.map((service, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3"
+                        data-testid={`service-${index}`}
+                      >
+                        <div className="w-3 h-3 rounded-full bg-blue-400 flex-shrink-0" />
+                        <p className="text-lg sm:text-xl font-bold text-foreground tracking-tight">
+                          {service}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-border my-8" />
+
                 {/* Featured Projects */}
                 <div className="mb-8">
                   <h3 
-                    className="text-lg sm:text-xl font-bold text-foreground mb-4 text-center"
+                    className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 text-center tracking-tight"
                     data-testid="text-portfolio-title"
                   >
                     Featured Projects
@@ -470,43 +496,17 @@ export default function DigitalCard() {
                   </div>
                 </div>
 
-                <div className="border-t border-border my-6" />
-
-                {/* Services Section */}
-                <div className="mb-8">
-                  <h3 
-                    className="text-lg sm:text-xl font-bold text-foreground mb-4 text-center"
-                    data-testid="text-services-title"
-                  >
-                    Our Services
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {services.map((service, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-950"
-                        data-testid={`service-${index}`}
-                      >
-                        <div className="w-2 h-2 rounded-full bg-blue-400 flex-shrink-0" />
-                        <p className="text-sm font-medium text-foreground">
-                          {service}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="border-t border-border my-6" />
+                <div className="border-t border-border my-8" />
 
                 {/* Top Clients */}
                 <div>
                   <h3 
-                    className="text-lg sm:text-xl font-bold text-foreground mb-4 text-center"
+                    className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 text-center tracking-tight"
                     data-testid="text-clients-title"
                   >
                     Top Clients
                   </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
                     {topClients.map((client) => (
                       <div
                         key={client.id}
@@ -516,7 +516,7 @@ export default function DigitalCard() {
                         <img 
                           src={client.logo} 
                           alt={client.name}
-                          className="w-full h-12 sm:h-16 object-contain grayscale hover:grayscale-0 transition-all"
+                          className="w-full h-16 sm:h-20 object-contain hover:scale-110 transition-transform"
                         />
                       </div>
                     ))}
