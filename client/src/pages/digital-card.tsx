@@ -251,8 +251,8 @@ export default function DigitalCard() {
               </div>
 
               {/* Owner Profile Photo - Pure White Background */}
-              <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 mb-4 bg-white pb-6">
-                <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6">
+              <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 bg-white pb-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6 mb-6">
                   <div className="relative">
                     <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-blue-400 bg-card overflow-hidden shadow-xl">
                       <img 
@@ -279,10 +279,10 @@ export default function DigitalCard() {
                     </p>
                   </div>
                 </div>
+                
+                {/* Blue Divider Line - Below profile section */}
+                <div className="border-t-2 border-blue-400" />
               </div>
-
-              {/* Blue Divider Line */}
-              <div className="border-t-2 border-blue-400 mx-4 sm:mx-6" />
 
               {/* Company Information */}
               <div className="px-4 sm:px-6 pb-6 pt-6 space-y-6">
