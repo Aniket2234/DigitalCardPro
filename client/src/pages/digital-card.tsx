@@ -32,7 +32,7 @@ export default function DigitalCard() {
   };
 
   const ownerInfo = {
-    name: "Owner Name",
+    name: "Sairaj Koyande",
     role: "Co Founder",
     photo: ownerPhoto
   };
@@ -219,8 +219,8 @@ export default function DigitalCard() {
             >
               {/* Banner/Cover Section */}
               <div className="relative h-48 sm:h-56 md:h-64 bg-white">
-                {/* Logo - no tint or effects - bigger size */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {/* Logo - no tint or effects - bigger size - positioned higher */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[70%]">
                   <img 
                     src={logoUrl} 
                     alt="Company Logo" 
@@ -250,11 +250,11 @@ export default function DigitalCard() {
                 </div>
               </div>
 
-              {/* Owner Profile Photo */}
-              <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 mb-4">
+              {/* Owner Profile Photo - Pure White Background */}
+              <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 mb-4 bg-white pb-6">
                 <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6">
                   <div className="relative">
-                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-card bg-card overflow-hidden shadow-xl">
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-blue-400 bg-card overflow-hidden shadow-xl">
                       <img 
                         src={ownerInfo.photo} 
                         alt={ownerInfo.name}
@@ -281,8 +281,11 @@ export default function DigitalCard() {
                 </div>
               </div>
 
+              {/* Blue Divider Line */}
+              <div className="border-t-2 border-blue-400 mx-4 sm:mx-6" />
+
               {/* Company Information */}
-              <div className="px-4 sm:px-6 pb-6 space-y-6">
+              <div className="px-4 sm:px-6 pb-6 pt-6 space-y-6">
                 {/* Company Name & Tagline */}
                 <div className="text-center">
                   <h2 
