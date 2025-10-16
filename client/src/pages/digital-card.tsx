@@ -23,8 +23,8 @@ export default function DigitalCard() {
     name: "AIRAVATA TECHNOLOGIES",
     tagline: "We Create, Innovate, Elevate",
     type: "Software Development Company",
-    website: "www.airavavatechnologies.com",
-    email: "info@airavavatechnologies.com",
+    website: "www.airavatatechnologies.com",
+    email: "info@airavatatechnologies.com",
     whatsapp: "+91 9619523254",
     mobile: "+91 8975623356",
     location: "Mumbai, Maharashtra, INDIA"
