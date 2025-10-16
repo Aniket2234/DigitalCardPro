@@ -86,12 +86,12 @@ export default function DigitalCard() {
           
           <div className="p-8 space-y-6">
             {/* Logo Section */}
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-3">
               <div className="relative">
                 <img 
                   src={logoUrl} 
                   alt="Airavata Technologies Logo" 
-                  className="h-28 w-auto object-contain"
+                  className="h-36 w-auto object-contain"
                   data-testid="img-logo"
                 />
               </div>
