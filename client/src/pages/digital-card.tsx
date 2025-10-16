@@ -252,9 +252,9 @@ export default function DigitalCard() {
 
               {/* Owner Profile Photo - Pure White Background */}
               <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 bg-white pb-6">
-                {/* Horizontal Blue Line crossing through profile */}
-                <div className="absolute left-0 right-0 top-0 sm:top-2 md:top-4 flex items-center justify-center pointer-events-none">
-                  <div className="w-full h-0.5 bg-blue-500" />
+                {/* Horizontal Blue Line crossing through center of profile */}
+                <div className="absolute left-0 right-0 top-12 sm:top-14 md:top-16 flex items-center justify-center pointer-events-none z-0">
+                  <div className="w-full h-1 bg-blue-400" />
                 </div>
                 
                 <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6 mb-6">
