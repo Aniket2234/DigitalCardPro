@@ -2,7 +2,7 @@ import { Phone, Mail, Globe, Share2, QrCode, ExternalLink } from "lucide-react";
 import { SiFacebook, SiInstagram, SiLinkedin, SiX, SiWhatsapp } from "react-icons/si";
 import { QRCodeSVG } from "qrcode.react";
 import { useState, useRef } from "react";
-import logoUrl from "@assets/logo_1760617115018.png";
+import logoUrl from "@assets/AIRAVATA TECHNOLOGIES LOGO_1760623809706.png";
 import bannerImage from "@assets/stock_images/modern_technology_ab_1ab0a508.jpg";
 import ownerPhoto from "@assets/stock_images/professional_busines_a226ab8a.jpg";
 import { Button } from "@/components/ui/button";
@@ -218,23 +218,15 @@ export default function DigitalCard() {
               data-testid="card-business"
             >
               {/* Banner/Cover Section */}
-              <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary/90 via-primary to-primary/80">
-                <img 
-                  src={bannerImage} 
-                  alt="Banner" 
-                  className="absolute inset-0 w-full h-full object-cover opacity-30"
-                />
-                
-                {/* Logo with white background */}
+              <div className="relative h-48 sm:h-56 md:h-64 bg-white">
+                {/* Logo - no tint or effects */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="bg-white rounded-lg p-4 shadow-lg">
-                    <img 
-                      src={logoUrl} 
-                      alt="Company Logo" 
-                      className="h-24 sm:h-32 md:h-40 w-auto object-contain"
-                      data-testid="img-banner-logo"
-                    />
-                  </div>
+                  <img 
+                    src={logoUrl} 
+                    alt="Company Logo" 
+                    className="h-24 sm:h-32 md:h-40 w-auto object-contain"
+                    data-testid="img-banner-logo"
+                  />
                 </div>
 
                 {/* Action Buttons - Top Right */}
@@ -260,8 +252,6 @@ export default function DigitalCard() {
                     <span className="hidden sm:inline">Share</span>
                   </Button>
                 </div>
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
               </div>
 
               {/* Owner Profile Photo */}
