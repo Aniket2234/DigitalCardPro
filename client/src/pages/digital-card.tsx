@@ -383,8 +383,6 @@ export default function DigitalCard() {
                   </a>
                 </div>
 
-                <div className="border-t border-border" />
-
                 {/* Flip Card Button */}
                 <div className="text-center">
                   <Button
