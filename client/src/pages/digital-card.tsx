@@ -46,28 +46,28 @@ export default function DigitalCard() {
     {
       name: "Facebook",
       icon: SiFacebook,
-      href: "#",
+      href: "https://facebook.com",
       color: "text-[#1877F2]",
       testId: "link-facebook"
     },
     {
       name: "Instagram",
       icon: SiInstagram,
-      href: "#",
+      href: "https://instagram.com",
       color: "text-[#E4405F]",
       testId: "link-instagram"
     },
     {
       name: "LinkedIn",
       icon: SiLinkedin,
-      href: "#",
+      href: "https://linkedin.com",
       color: "text-[#0A66C2]",
       testId: "link-linkedin"
     },
     {
       name: "X",
       icon: SiX,
-      href: "#",
+      href: "https://x.com",
       color: "text-foreground",
       testId: "link-x"
     }
@@ -119,6 +119,28 @@ export default function DigitalCard() {
               </p>
             </div>
 
+            {/* Social Media Icons */}
+            <div className="flex justify-center gap-4 pt-2">
+              {socialMedia.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group transition-transform duration-200 hover:scale-110 active:scale-95"
+                    aria-label={social.name}
+                    data-testid={social.testId}
+                  >
+                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover-elevate active-elevate-2 transition-all">
+                      <Icon className={`w-5 h-5 ${social.color}`} />
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+
             {/* Divider */}
             <div className="border-t border-border" />
 
@@ -149,33 +171,6 @@ export default function DigitalCard() {
                   </a>
                 );
               })}
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-border" />
-
-            {/* Social Media Icons */}
-            <div className="space-y-2">
-              <div className="flex justify-center gap-4">
-                {socialMedia.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <div
-                      key={social.name}
-                      className="opacity-50 cursor-not-allowed"
-                      aria-label={`${social.name} - Coming Soon`}
-                      data-testid={social.testId}
-                    >
-                      <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-                        <Icon className={`w-5 h-5 ${social.color}`} />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <p className="text-xs text-center text-muted-foreground italic">
-                Connect with us on social media (links coming soon)
-              </p>
             </div>
 
             {/* Divider */}
