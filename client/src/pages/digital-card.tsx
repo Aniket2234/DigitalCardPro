@@ -9,6 +9,9 @@ import googleLogo from "@assets/image_1760628228490.png";
 import amazonLogo from "@assets/image_1760628360957.png";
 import teslaLogo from "@assets/image_1760628321153.png";
 import nvidiaLogo from "@assets/image_1760628385862.png";
+import ecommerceProject from "@assets/image_1760629080283.png";
+import bankingProject from "@assets/image_1760629106442.png";
+import healthcareProject from "@assets/image_1760629142387.png";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -47,21 +50,21 @@ export default function DigitalCard() {
       id: 1,
       title: "E-Commerce Platform",
       description: "Complete online shopping solution",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=400&h=300&fit=crop",
+      image: ecommerceProject,
       link: "#"
     },
     {
       id: 2,
       title: "Mobile Banking App",
       description: "Secure financial management",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
+      image: bankingProject,
       link: "#"
     },
     {
       id: 3,
       title: "Healthcare System",
       description: "Patient management platform",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop",
+      image: healthcareProject,
       link: "#"
     }
   ];
