@@ -287,7 +287,7 @@ export default function DigitalCard() {
               </div>
 
               {/* Company Information */}
-              <div className="px-4 sm:px-6 pb-6 pt-6 bg-white space-y-6">
+              <div className="px-4 sm:px-6 pb-6 bg-white space-y-6">
                 {/* Company Name & Tagline */}
                 <div className="text-center">
                   <h2 
