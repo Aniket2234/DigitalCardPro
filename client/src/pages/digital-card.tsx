@@ -91,7 +91,7 @@ export default function DigitalCard() {
                 <img 
                   src={logoUrl} 
                   alt="Airavata Technologies Logo" 
-                  className="h-36 w-auto object-contain"
+                  className="h-48 w-auto object-contain"
                   data-testid="img-logo"
                 />
               </div>
