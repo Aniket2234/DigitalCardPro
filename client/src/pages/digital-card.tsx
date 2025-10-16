@@ -1,45 +1,62 @@
-import { Phone, Mail, Globe, MapPin } from "lucide-react";
-import { SiFacebook, SiInstagram, SiLinkedin, SiX } from "react-icons/si";
+import { Phone, Mail, Globe, Share2, QrCode, ExternalLink } from "lucide-react";
+import { SiFacebook, SiInstagram, SiLinkedin, SiX, SiWhatsapp } from "react-icons/si";
+import { QRCodeSVG } from "qrcode.react";
+import { useState } from "react";
 import logoUrl from "@assets/logo_1760617115018.png";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function DigitalCard() {
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 9619523254, +91 8975623356",
-      href: "tel:+919619523254",
-      testId: "link-phone"
-    },
-    {
-      icon: Mail,
-      label: "Email",
-      value: "info@airavavatechnologies.com",
-      href: "mailto:info@airavavatechnologies.com",
-      testId: "link-email"
-    },
-    {
-      icon: Globe,
-      label: "Website",
-      value: "www.airavavatechnologies.com",
-      href: "https://www.airavavatechnologies.com",
-      testId: "link-website"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Mumbai, Maharashtra, INDIA",
-      href: "https://maps.google.com/?q=Mumbai,Maharashtra,India",
-      testId: "link-location"
-    }
-  ];
+  const [showQR, setShowQR] = useState(false);
+  const cardUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const services = [
-    "Website Development",
-    "Mobile App Development",
-    "Software Development",
-    "AI & Automation",
-    "Digital Marketing"
+  // Company and Owner Information
+  const companyInfo = {
+    name: "AIRAVATA TECHNOLOGIES",
+    tagline: "We Create, Innovate, Elevate",
+    type: "Software Development Company",
+    website: "www.airavavatechnologies.com",
+    email: "info@airavavatechnologies.com",
+    whatsapp: "+91 9619523254",
+    mobile: "+91 8975623356",
+    location: "Mumbai, Maharashtra, INDIA"
+  };
+
+  const ownerInfo = {
+    name: "Owner Name",
+    role: "Founder & CEO",
+    photo: "https://ui-avatars.com/api/?name=Owner+Name&size=200&background=2979FF&color=fff"
+  };
+
+  // Portfolio Projects
+  const projects = [
+    {
+      id: 1,
+      title: "E-Commerce Platform",
+      description: "Complete online shopping solution",
+      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=400&h=300&fit=crop",
+      link: "#"
+    },
+    {
+      id: 2,
+      title: "Mobile Banking App",
+      description: "Secure financial management",
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
+      link: "#"
+    },
+    {
+      id: 3,
+      title: "Healthcare System",
+      description: "Patient management platform",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop",
+      link: "#"
+    }
   ];
 
   const socialMedia = [
@@ -73,54 +90,127 @@ export default function DigitalCard() {
     }
   ];
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: companyInfo.name,
+          text: `${companyInfo.tagline} - Digital Business Card`,
+          url: cardUrl,
+        });
+      } catch (err) {
+        console.log('Share cancelled');
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(cardUrl);
+      alert('Link copied to clipboard!');
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-muted/20 to-background p-4 md:p-6">
-      <div className="w-full max-w-sm">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background py-8 px-4">
+      <div className="max-w-4xl mx-auto">
         {/* Digital Business Card */}
         <div 
-          className="relative bg-card border border-card-border rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:scale-[1.02]"
+          className="bg-card border border-card-border rounded-2xl shadow-2xl overflow-hidden"
           data-testid="card-business"
         >
-          {/* Accent Color Strip */}
-          <div className="h-2 bg-gradient-to-r from-[#FF3D00] via-[#FFD600] via-[#00C853] to-[#2979FF]" />
-          
-          <div className="p-8 space-y-6">
-            {/* Logo Section */}
-            <div className="flex justify-center mb-3">
+          {/* Banner/Cover Section */}
+          <div className="relative h-64 bg-gradient-to-br from-primary/90 via-primary to-primary/80">
+            {/* Logo in Banner */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img 
+                src={logoUrl} 
+                alt="Company Logo" 
+                className="h-32 w-auto object-contain opacity-90"
+                data-testid="img-banner-logo"
+              />
+            </div>
+            
+            {/* Decorative overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          </div>
+
+          {/* Owner Profile Photo Overlay */}
+          <div className="relative px-6 -mt-20 mb-4">
+            <div className="flex items-end gap-6">
               <div className="relative">
-                <img 
-                  src={logoUrl} 
-                  alt="Airavata Technologies Logo" 
-                  className="h-48 w-auto object-contain"
-                  data-testid="img-logo"
-                />
+                <div className="w-32 h-32 rounded-full border-4 border-card bg-card overflow-hidden shadow-xl">
+                  <img 
+                    src={ownerInfo.photo} 
+                    alt={ownerInfo.name}
+                    className="w-full h-full object-cover"
+                    data-testid="img-owner-photo"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex-1 pb-2">
+                <h1 
+                  className="text-2xl font-bold text-foreground"
+                  data-testid="text-owner-name"
+                >
+                  {ownerInfo.name}
+                </h1>
+                <p 
+                  className="text-sm text-muted-foreground"
+                  data-testid="text-owner-role"
+                >
+                  {ownerInfo.role}
+                </p>
+              </div>
+
+              {/* Share Buttons */}
+              <div className="flex gap-2 pb-2">
+                <Button
+                  onClick={() => setShowQR(true)}
+                  variant="outline"
+                  size="sm"
+                  data-testid="button-qr-code"
+                >
+                  <QrCode className="w-4 h-4 mr-2" />
+                  QR Code
+                </Button>
+                <Button
+                  onClick={handleShare}
+                  variant="default"
+                  size="sm"
+                  data-testid="button-share"
+                >
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share
+                </Button>
               </div>
             </div>
+          </div>
 
-            {/* Company Identity */}
-            <div className="text-center space-y-2">
-              <h1 
-                className="text-3xl font-bold font-heading tracking-tight text-foreground"
+          {/* Company Information */}
+          <div className="px-6 pb-6 space-y-6">
+            {/* Company Name & Tagline */}
+            <div className="text-center">
+              <h2 
+                className="text-3xl font-bold text-foreground mb-2"
                 data-testid="text-company-name"
               >
-                AIRAVATA TECHNOLOGIES
-              </h1>
+                {companyInfo.name}
+              </h2>
               <p 
-                className="text-xs font-medium tracking-wider text-muted-foreground uppercase"
+                className="text-sm text-muted-foreground uppercase tracking-wide mb-2"
                 data-testid="text-company-type"
               >
-                Software Development Company
+                {companyInfo.type}
               </p>
               <p 
-                className="text-sm font-medium text-primary italic"
+                className="text-base text-primary italic font-medium"
                 data-testid="text-tagline"
               >
-                We Create, Innovate, Elevate
+                {companyInfo.tagline}
               </p>
             </div>
 
-            {/* Social Media Icons */}
-            <div className="flex justify-center gap-4 pt-2">
+            {/* Social Media */}
+            <div className="flex justify-center gap-3">
               {socialMedia.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -129,130 +219,151 @@ export default function DigitalCard() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group transition-transform duration-200 hover:scale-110 active:scale-95"
+                    className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover-elevate active-elevate-2 transition-all"
                     aria-label={social.name}
                     data-testid={social.testId}
                   >
-                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover-elevate active-elevate-2 transition-all">
-                      <Icon className={`w-5 h-5 ${social.color}`} />
-                    </div>
+                    <Icon className={`w-5 h-5 ${social.color}`} />
                   </a>
                 );
               })}
             </div>
 
-            {/* Divider */}
             <div className="border-t border-border" />
 
-            {/* Services Section */}
-            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20">
-              <h2 
-                className="text-lg font-bold text-foreground text-center mb-5"
-                data-testid="text-services-title"
+            {/* Contact Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a
+                href={`https://wa.me/${companyInfo.whatsapp.replace(/[^0-9]/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-lg hover-elevate active-elevate-2 transition-all group"
+                data-testid="link-whatsapp"
               >
-                Our Services
-              </h2>
-              <div className="relative grid grid-cols-2 gap-6">
-                {/* Left Column */}
-                <div className="space-y-3">
-                  {services.slice(0, 3).map((service, index) => (
-                    <div
-                      key={service}
-                      className="flex items-start gap-2"
-                      data-testid={`text-service-${index}`}
-                    >
-                      <div className="mt-1">
-                        <svg 
-                          className="w-4 h-4 text-primary flex-shrink-0" 
-                          fill="currentColor" 
-                          viewBox="0 0 20 20"
-                        >
-                          <path 
-                            fillRule="evenodd" 
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                            clipRule="evenodd" 
-                          />
-                        </svg>
-                      </div>
-                      <span className="text-sm font-medium text-foreground leading-snug">
-                        {service}
-                      </span>
-                    </div>
-                  ))}
+                <SiWhatsapp className="w-5 h-5 text-[#25D366] flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">WhatsApp</p>
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    {companyInfo.whatsapp}
+                  </p>
                 </div>
+              </a>
 
-                {/* Vertical Divider */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent transform -translate-x-1/2" />
-
-                {/* Right Column */}
-                <div className="space-y-3">
-                  {services.slice(3, 6).map((service, index) => (
-                    <div
-                      key={service}
-                      className="flex items-start gap-2"
-                      data-testid={`text-service-${index + 3}`}
-                    >
-                      <div className="mt-1">
-                        <svg 
-                          className="w-4 h-4 text-primary flex-shrink-0" 
-                          fill="currentColor" 
-                          viewBox="0 0 20 20"
-                        >
-                          <path 
-                            fillRule="evenodd" 
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                            clipRule="evenodd" 
-                          />
-                        </svg>
-                      </div>
-                      <span className="text-sm font-medium text-foreground leading-snug">
-                        {service}
-                      </span>
-                    </div>
-                  ))}
+              <a
+                href={`tel:${companyInfo.mobile.replace(/[^0-9]/g, '')}`}
+                className="flex items-center gap-3 p-3 rounded-lg hover-elevate active-elevate-2 transition-all group"
+                data-testid="link-mobile"
+              >
+                <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Mobile</p>
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    {companyInfo.mobile}
+                  </p>
                 </div>
-              </div>
+              </a>
+
+              <a
+                href={`mailto:${companyInfo.email}`}
+                className="flex items-center gap-3 p-3 rounded-lg hover-elevate active-elevate-2 transition-all group"
+                data-testid="link-email"
+              >
+                <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Email</p>
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors break-all">
+                    {companyInfo.email}
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href={`https://${companyInfo.website}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-lg hover-elevate active-elevate-2 transition-all group"
+                data-testid="link-website"
+              >
+                <Globe className="w-5 h-5 text-primary flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Website</p>
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    {companyInfo.website}
+                  </p>
+                </div>
+              </a>
             </div>
 
-            {/* Divider */}
             <div className="border-t border-border" />
 
-            {/* Contact Information */}
-            <div className="space-y-2">
-              {contactInfo.map((item) => {
-                const Icon = item.icon;
-                return (
+            {/* Portfolio Section */}
+            <div>
+              <h3 
+                className="text-xl font-bold text-foreground mb-4 text-center"
+                data-testid="text-portfolio-title"
+              >
+                Featured Projects
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {projects.map((project) => (
                   <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.label === "Website" || item.label === "Location" ? "_blank" : undefined}
-                    rel={item.label === "Website" || item.label === "Location" ? "noopener noreferrer" : undefined}
-                    className="flex items-start gap-3 group hover-elevate active-elevate-2 rounded-md p-2 -mx-2 transition-all duration-200"
-                    data-testid={item.testId}
+                    key={project.id}
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative overflow-hidden rounded-lg border border-border hover-elevate active-elevate-2 transition-all"
+                    data-testid={`card-project-${project.id}`}
                   >
-                    <div className="flex-shrink-0 mt-0.5">
-                      <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div className="aspect-video overflow-hidden bg-muted">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
-                        {item.label}
-                      </p>
-                      <p className="text-sm text-foreground font-medium break-words group-hover:text-primary transition-colors">
-                        {item.value}
+                    <div className="p-3">
+                      <h4 className="font-semibold text-foreground mb-1 flex items-center gap-2">
+                        {project.title}
+                        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </h4>
+                      <p className="text-xs text-muted-foreground">
+                        {project.description}
                       </p>
                     </div>
                   </a>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Footer Note */}
-        <p className="text-center text-xs text-muted-foreground mt-4">
-          Digital Business Card
+        {/* Footer */}
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          Digital Business Card - Powered by {companyInfo.name}
         </p>
       </div>
+
+      {/* QR Code Dialog */}
+      <Dialog open={showQR} onOpenChange={setShowQR}>
+        <DialogContent data-testid="dialog-qr-code">
+          <DialogHeader>
+            <DialogTitle>Scan to Share</DialogTitle>
+            <DialogDescription>
+              Scan this QR code to share the digital business card
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center p-6">
+            <div className="bg-white p-4 rounded-lg">
+              <QRCodeSVG 
+                value={cardUrl} 
+                size={200}
+                level="H"
+                data-testid="qr-code-image"
+              />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

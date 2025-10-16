@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a modern, interactive digital business card web application for Airavata Technologies. The application presents company information, contact details, services, and social media links in a professional, mobile-optimized vertical card format inspired by digital ID cards. Built as a single-page application with a focus on clean design and click-to-contact functionality.
+This is a modern, interactive digital business card web application for Airavata Technologies. The application features a Facebook-style cover banner design with company logo, circular owner profile photo, portfolio showcase, and comprehensive sharing capabilities. Built as a single-page application with a professional layout optimized for both desktop and mobile viewing.
 
 ## User Preferences
 
@@ -31,11 +31,20 @@ Preferred communication style: Simple, everyday language.
 - Toast notifications for user feedback via custom toast system
 
 **Design System**
-- Vertical card layout optimized for mobile sharing (max-width: 384px)
-- Professional minimalism with clear information hierarchy
+- Facebook-style cover banner layout with company branding
+- Circular owner profile photo overlay on banner
+- Responsive grid layout (max-width: 1024px) optimized for desktop and mobile
+- Professional design with clear information hierarchy
 - Typography: Inter (primary) and Poppins (accent/company name)
-- Responsive design with mobile-first approach
 - Dark mode support through CSS custom properties
+
+**Key Features**
+- **Banner Section**: Gradient background with centered company logo
+- **Profile Section**: Circular owner photo with name and role overlay on banner
+- **Contact Information**: WhatsApp, mobile, email, and website with click-to-contact
+- **Social Media Links**: Facebook, Instagram, LinkedIn, X with branded icons
+- **Portfolio Showcase**: Featured projects with images and descriptions
+- **Sharing Features**: QR code generation and Web Share API integration
 
 ### Backend Architecture
 
@@ -92,7 +101,8 @@ Preferred communication style: Simple, everyday language.
 **Third-Party UI Libraries**
 - **Radix UI** ecosystem (20+ component primitives including dialogs, dropdowns, tooltips)
 - **Lucide React** for icon components
-- **react-icons** specifically for social media icons (Facebook, Instagram, LinkedIn, X/Twitter)
+- **react-icons** specifically for social media icons (Facebook, Instagram, LinkedIn, X/Twitter, WhatsApp)
+- **qrcode.react** for QR code generation and sharing functionality
 - **embla-carousel-react** for carousel functionality
 - **cmdk** for command palette patterns
 - **vaul** for drawer components
