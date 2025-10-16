@@ -419,18 +419,6 @@ export default function DigitalCard() {
               }}
             >
               <div className="h-full overflow-y-auto p-4 sm:p-6 bg-white">
-                {/* Flip Back Button */}
-                <div className="mb-6">
-                  <Button
-                    onClick={() => setIsFlipped(!isFlipped)}
-                    variant="outline"
-                    size="sm"
-                    data-testid="button-flip-back"
-                  >
-                    ← Back to Card
-                  </Button>
-                </div>
-
                 {/* Services Section - Top Priority */}
                 <div className="mb-8">
                   <h3 
@@ -455,12 +443,12 @@ export default function DigitalCard() {
                   </div>
                 </div>
 
-                <div className="border-t border-border my-8" />
+                <div className="border-t-2 border-blue-400 my-8" />
 
                 {/* Featured Projects */}
                 <div className="mb-8">
                   <h3 
-                    className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 text-center tracking-tight"
+                    className="text-2xl sm:text-3xl font-extrabold text-blue-500 mb-6 text-center tracking-tight"
                     data-testid="text-portfolio-title"
                   >
                     Featured Projects
@@ -496,12 +484,12 @@ export default function DigitalCard() {
                   </div>
                 </div>
 
-                <div className="border-t border-border my-8" />
+                <div className="border-t-2 border-blue-400 my-8" />
 
                 {/* Top Clients */}
-                <div>
+                <div className="mb-8">
                   <h3 
-                    className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 text-center tracking-tight"
+                    className="text-2xl sm:text-3xl font-extrabold text-blue-500 mb-6 text-center tracking-tight"
                     data-testid="text-clients-title"
                   >
                     Top Clients
@@ -521,6 +509,19 @@ export default function DigitalCard() {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* Flip Back Button - Bottom */}
+                <div className="text-center pt-4 border-t-2 border-blue-400">
+                  <Button
+                    onClick={() => setIsFlipped(!isFlipped)}
+                    variant="outline"
+                    size="sm"
+                    className="mt-4"
+                    data-testid="button-flip-back"
+                  >
+                    ← Back to Card
+                  </Button>
                 </div>
               </div>
             </div>
