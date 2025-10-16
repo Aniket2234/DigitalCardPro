@@ -1,7 +1,7 @@
 import { Phone, Mail, Globe, Share2, QrCode, ExternalLink, ScanLine } from "lucide-react";
 import { SiFacebook, SiInstagram, SiLinkedin, SiX, SiWhatsapp } from "react-icons/si";
 import { QRCodeSVG } from "qrcode.react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import logoUrl from "@assets/AIRAVATA TECHNOLOGIES LOGO_1760623809706.png";
 import bannerImage from "@assets/stock_images/modern_technology_ab_1ab0a508.jpg";
 import ownerPhoto from "@assets/SAIRAJIMG_1760623990534.jpg";
@@ -25,9 +25,11 @@ export default function DigitalCard() {
   const [showQR, setShowQR] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
   const cardUrl = typeof window !== 'undefined' ? window.location.href : '';
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const companyInfo = {
     name: "AIRAVATA TECHNOLOGIES",
@@ -165,12 +167,9 @@ export default function DigitalCard() {
           video: { facingMode: 'environment' } 
         });
         
-        // If we get here, camera access was granted
-        // Show the scanner dialog
+        // Store the stream and show the scanner dialog
+        setCameraStream(stream);
         setShowScanner(true);
-        
-        // Stop the stream immediately as we'll restart it in the scanner
-        stream.getTracks().forEach(track => track.stop());
       } catch (err) {
         console.log('Camera access denied or unavailable');
         // Fallback: try to open device camera app
@@ -196,6 +195,23 @@ export default function DigitalCard() {
       input.click();
     }
   };
+
+  const handleCloseScanner = () => {
+    // Stop camera stream when closing scanner
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(track => track.stop());
+      setCameraStream(null);
+    }
+    setShowScanner(false);
+  };
+
+  // Effect to attach video stream to video element
+  useEffect(() => {
+    if (videoRef.current && cameraStream) {
+      videoRef.current.srcObject = cameraStream;
+      videoRef.current.play().catch(err => console.log('Error playing video:', err));
+    }
+  }, [cameraStream]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -462,6 +478,12 @@ export default function DigitalCard() {
                 backfaceVisibility: "hidden",
                 transform: "rotateY(180deg)"
               }}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+              onPointerDown={(e) => e.stopPropagation()}
+              onPointerMove={(e) => e.stopPropagation()}
+              onPointerUp={(e) => e.stopPropagation()}
             >
               <div className="h-full overflow-y-auto p-4 sm:p-6 bg-white">
                 {/* Services Section - Top Priority */}
@@ -611,7 +633,7 @@ export default function DigitalCard() {
       </Dialog>
 
       {/* QR Scanner Dialog */}
-      <Dialog open={showScanner} onOpenChange={setShowScanner}>
+      <Dialog open={showScanner} onOpenChange={handleCloseScanner}>
         <DialogContent data-testid="dialog-qr-scanner">
           <DialogHeader>
             <DialogTitle>Scan QR Code</DialogTitle>
@@ -620,19 +642,38 @@ export default function DigitalCard() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center gap-4 p-6">
-            <div className="w-full aspect-square bg-muted rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <ScanLine className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">
-                  QR Scanner would be activated here
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">
-                  Use your device's camera to scan
-                </p>
-              </div>
+            <div className="w-full aspect-square bg-black rounded-lg overflow-hidden relative">
+              {cameraStream ? (
+                <video 
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  playsInline
+                  muted
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <ScanLine className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground">
+                      Requesting camera access...
+                    </p>
+                  </div>
+                </div>
+              )}
+              {/* Scanning overlay */}
+              {cameraStream && (
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute inset-1/4 border-2 border-primary rounded-lg"></div>
+                  <ScanLine className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-1/2 h-1 text-primary animate-pulse" />
+                </div>
+              )}
             </div>
+            <p className="text-xs text-center text-muted-foreground">
+              Note: This is a camera preview. QR code decoding functionality can be added with a library like jsQR or html5-qrcode.
+            </p>
             <Button
-              onClick={() => setShowScanner(false)}
+              onClick={handleCloseScanner}
               variant="outline"
               className="w-full"
               data-testid="button-close-scanner"
