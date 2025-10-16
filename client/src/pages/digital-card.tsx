@@ -1,10 +1,14 @@
-import { Phone, Mail, Globe, Share2, QrCode, ExternalLink } from "lucide-react";
+import { Phone, Mail, Globe, Share2, QrCode, ExternalLink, ScanLine } from "lucide-react";
 import { SiFacebook, SiInstagram, SiLinkedin, SiX, SiWhatsapp } from "react-icons/si";
 import { QRCodeSVG } from "qrcode.react";
 import { useState, useRef } from "react";
 import logoUrl from "@assets/AIRAVATA TECHNOLOGIES LOGO_1760623809706.png";
 import bannerImage from "@assets/stock_images/modern_technology_ab_1ab0a508.jpg";
 import ownerPhoto from "@assets/SAIRAJIMG_1760623990534.jpg";
+import googleLogo from "@assets/stock_images/google_logo_transpar_ec2a1d99.jpg";
+import amazonLogo from "@assets/stock_images/amazon_logo_transpar_8a6faae8.jpg";
+import teslaLogo from "@assets/stock_images/tesla_logo_transpare_8156eaa4.jpg";
+import nvidiaLogo from "@assets/stock_images/nvidia_logo_transpar_433683ad.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,6 +20,7 @@ import {
 
 export default function DigitalCard() {
   const [showQR, setShowQR] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const cardUrl = typeof window !== 'undefined' ? window.location.href : '';
   const touchStartX = useRef<number>(0);
@@ -61,26 +66,34 @@ export default function DigitalCard() {
     }
   ];
 
-  const companies = [
+  const services = [
+    "Website Development",
+    "Mobile Application Development",
+    "Software Development",
+    "AI & Automation",
+    "Digital Marketing"
+  ];
+
+  const topClients = [
     {
       id: 1,
-      name: "Tech Corp",
-      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=200&fit=crop"
+      name: "Google",
+      logo: googleLogo
     },
     {
       id: 2,
-      name: "Innovation Labs",
-      logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop"
+      name: "Amazon",
+      logo: amazonLogo
     },
     {
       id: 3,
-      name: "Digital Solutions",
-      logo: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=200&h=200&fit=crop"
+      name: "Tesla",
+      logo: teslaLogo
     },
     {
       id: 4,
-      name: "Cloud Systems",
-      logo: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=200&fit=crop"
+      name: "Nvidia",
+      logo: nvidiaLogo
     }
   ];
 
@@ -399,7 +412,7 @@ export default function DigitalCard() {
 
             {/* Back of Card */}
             <div
-              className="absolute inset-0 bg-card border border-card-border rounded-2xl shadow-2xl overflow-hidden"
+              className="absolute inset-0 bg-card border-4 border-blue-400 rounded-2xl shadow-2xl overflow-hidden"
               style={{
                 backfaceVisibility: "hidden",
                 transform: "rotateY(180deg)"
@@ -459,25 +472,51 @@ export default function DigitalCard() {
 
                 <div className="border-t border-border my-6" />
 
-                {/* Companies Worked With */}
+                {/* Services Section */}
+                <div className="mb-8">
+                  <h3 
+                    className="text-lg sm:text-xl font-bold text-foreground mb-4 text-center"
+                    data-testid="text-services-title"
+                  >
+                    Our Services
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {services.map((service, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-950"
+                        data-testid={`service-${index}`}
+                      >
+                        <div className="w-2 h-2 rounded-full bg-blue-400 flex-shrink-0" />
+                        <p className="text-sm font-medium text-foreground">
+                          {service}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-border my-6" />
+
+                {/* Top Clients */}
                 <div>
                   <h3 
                     className="text-lg sm:text-xl font-bold text-foreground mb-4 text-center"
-                    data-testid="text-companies-title"
+                    data-testid="text-clients-title"
                   >
-                    Companies Worked With
+                    Top Clients
                   </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    {companies.map((company) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                    {topClients.map((client) => (
                       <div
-                        key={company.id}
-                        className="flex items-center justify-center p-4 rounded-lg border border-border bg-background hover:border-primary hover:shadow-md transition-all"
-                        data-testid={`company-${company.id}`}
+                        key={client.id}
+                        className="flex items-center justify-center"
+                        data-testid={`client-${client.id}`}
                       >
                         <img 
-                          src={company.logo} 
-                          alt={company.name}
-                          className="w-full h-16 object-contain"
+                          src={client.logo} 
+                          alt={client.name}
+                          className="w-full h-12 sm:h-16 object-contain grayscale hover:grayscale-0 transition-all"
                         />
                       </div>
                     ))}
@@ -503,7 +542,7 @@ export default function DigitalCard() {
               Scan this QR code to share the digital business card
             </DialogDescription>
           </DialogHeader>
-          <div className="flex justify-center p-6">
+          <div className="flex flex-col items-center gap-4 p-6">
             <div className="bg-white p-4 rounded-lg">
               <QRCodeSVG 
                 value={cardUrl} 
@@ -512,6 +551,51 @@ export default function DigitalCard() {
                 data-testid="qr-code-image"
               />
             </div>
+            <Button
+              onClick={() => {
+                setShowQR(false);
+                setShowScanner(true);
+              }}
+              variant="outline"
+              className="w-full max-w-xs"
+              data-testid="button-open-scanner"
+            >
+              <ScanLine className="w-4 h-4 mr-2" />
+              Scan QR Code
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* QR Scanner Dialog */}
+      <Dialog open={showScanner} onOpenChange={setShowScanner}>
+        <DialogContent data-testid="dialog-qr-scanner">
+          <DialogHeader>
+            <DialogTitle>Scan QR Code</DialogTitle>
+            <DialogDescription>
+              Point your camera at a QR code to scan
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col items-center gap-4 p-6">
+            <div className="w-full aspect-square bg-muted rounded-lg flex items-center justify-center">
+              <div className="text-center">
+                <ScanLine className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">
+                  QR Scanner would be activated here
+                </p>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Use your device's camera to scan
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => setShowScanner(false)}
+              variant="outline"
+              className="w-full"
+              data-testid="button-close-scanner"
+            >
+              Close Scanner
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
