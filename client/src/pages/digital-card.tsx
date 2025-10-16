@@ -3,6 +3,8 @@ import { SiFacebook, SiInstagram, SiLinkedin, SiX, SiWhatsapp } from "react-icon
 import { QRCodeSVG } from "qrcode.react";
 import { useState } from "react";
 import logoUrl from "@assets/logo_1760617115018.png";
+import bannerImage from "@assets/stock_images/modern_technology_ab_1ab0a508.jpg";
+import ownerPhoto from "@assets/stock_images/professional_busines_a226ab8a.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -31,7 +33,7 @@ export default function DigitalCard() {
   const ownerInfo = {
     name: "Owner Name",
     role: "Founder & CEO",
-    photo: "https://ui-avatars.com/api/?name=Owner+Name&size=200&background=2979FF&color=fff"
+    photo: ownerPhoto
   };
 
   // Portfolio Projects
@@ -117,26 +119,33 @@ export default function DigitalCard() {
           data-testid="card-business"
         >
           {/* Banner/Cover Section */}
-          <div className="relative h-64 bg-gradient-to-br from-primary/90 via-primary to-primary/80">
+          <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary/90 via-primary to-primary/80">
+            {/* Background Image */}
+            <img 
+              src={bannerImage} 
+              alt="Banner" 
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+            />
+            
             {/* Logo in Banner */}
             <div className="absolute inset-0 flex items-center justify-center">
               <img 
                 src={logoUrl} 
                 alt="Company Logo" 
-                className="h-32 w-auto object-contain opacity-90"
+                className="h-40 sm:h-48 md:h-56 w-auto object-contain opacity-90"
                 data-testid="img-banner-logo"
               />
             </div>
             
             {/* Decorative overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
           </div>
 
           {/* Owner Profile Photo Overlay */}
-          <div className="relative px-6 -mt-20 mb-4">
-            <div className="flex items-end gap-6">
+          <div className="relative px-4 sm:px-6 -mt-12 sm:-mt-16 md:-mt-20 mb-4">
+            <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6">
               <div className="relative">
-                <div className="w-32 h-32 rounded-full border-4 border-card bg-card overflow-hidden shadow-xl">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-card bg-card overflow-hidden shadow-xl">
                   <img 
                     src={ownerInfo.photo} 
                     alt={ownerInfo.name}
@@ -146,9 +155,9 @@ export default function DigitalCard() {
                 </div>
               </div>
               
-              <div className="flex-1 pb-2">
+              <div className="flex-1 text-center sm:text-left pb-0 sm:pb-2">
                 <h1 
-                  className="text-2xl font-bold text-foreground"
+                  className="text-xl sm:text-2xl font-bold text-foreground"
                   data-testid="text-owner-name"
                 >
                   {ownerInfo.name}
@@ -162,47 +171,49 @@ export default function DigitalCard() {
               </div>
 
               {/* Share Buttons */}
-              <div className="flex gap-2 pb-2">
+              <div className="flex gap-2 pb-0 sm:pb-2">
                 <Button
                   onClick={() => setShowQR(true)}
                   variant="outline"
                   size="sm"
                   data-testid="button-qr-code"
+                  className="text-xs sm:text-sm"
                 >
-                  <QrCode className="w-4 h-4 mr-2" />
-                  QR Code
+                  <QrCode className="w-4 h-4 sm:mr-2" />
+                  <span className="hidden sm:inline">QR Code</span>
                 </Button>
                 <Button
                   onClick={handleShare}
                   variant="default"
                   size="sm"
                   data-testid="button-share"
+                  className="text-xs sm:text-sm"
                 >
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Share
+                  <Share2 className="w-4 h-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Share</span>
                 </Button>
               </div>
             </div>
           </div>
 
           {/* Company Information */}
-          <div className="px-6 pb-6 space-y-6">
+          <div className="px-4 sm:px-6 pb-6 space-y-6">
             {/* Company Name & Tagline */}
             <div className="text-center">
               <h2 
-                className="text-3xl font-bold text-foreground mb-2"
+                className="text-2xl sm:text-3xl font-bold text-foreground mb-2"
                 data-testid="text-company-name"
               >
                 {companyInfo.name}
               </h2>
               <p 
-                className="text-sm text-muted-foreground uppercase tracking-wide mb-2"
+                className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wide mb-2"
                 data-testid="text-company-type"
               >
                 {companyInfo.type}
               </p>
               <p 
-                className="text-base text-primary italic font-medium"
+                className="text-sm sm:text-base text-primary italic font-medium"
                 data-testid="text-tagline"
               >
                 {companyInfo.tagline}
@@ -299,12 +310,12 @@ export default function DigitalCard() {
             {/* Portfolio Section */}
             <div>
               <h3 
-                className="text-xl font-bold text-foreground mb-4 text-center"
+                className="text-lg sm:text-xl font-bold text-foreground mb-4 text-center"
                 data-testid="text-portfolio-title"
               >
                 Featured Projects
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {projects.map((project) => (
                   <a
                     key={project.id}
