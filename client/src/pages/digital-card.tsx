@@ -3,24 +3,14 @@ import { SiFacebook, SiInstagram, SiLinkedin, SiX } from "react-icons/si";
 import logoUrl from "@assets/logo_1760615598466.png";
 
 export default function DigitalCard() {
-  const phoneNumbers = [
+  const contactInfo = [
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 9619523254",
+      value: "+91 9619523254, +91 8975623356",
       href: "tel:+919619523254",
-      testId: "link-phone-1"
+      testId: "link-phone"
     },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 8975623356",
-      href: "tel:+918975623356",
-      testId: "link-phone-2"
-    }
-  ];
-
-  const otherContactInfo = [
     {
       icon: Mail,
       label: "Email",
@@ -101,7 +91,7 @@ export default function DigitalCard() {
                 <img 
                   src={logoUrl} 
                   alt="Airavata Technologies Logo" 
-                  className="h-20 w-auto object-contain"
+                  className="h-28 w-auto object-contain"
                   data-testid="img-logo"
                 />
               </div>
@@ -133,31 +123,8 @@ export default function DigitalCard() {
             <div className="border-t border-border" />
 
             {/* Contact Information */}
-            <div className="space-y-3">
-              {phoneNumbers.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={`${item.label}-${index}`}
-                    href={item.href}
-                    className="flex items-start gap-3 group hover-elevate active-elevate-2 rounded-md p-2 -mx-2 transition-all duration-200"
-                    data-testid={item.testId}
-                  >
-                    <div className="flex-shrink-0 mt-0.5">
-                      <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5">
-                        {item.label}
-                      </p>
-                      <p className="text-sm text-foreground font-medium break-words group-hover:text-primary transition-colors">
-                        {item.value}
-                      </p>
-                    </div>
-                  </a>
-                );
-              })}
-              {otherContactInfo.map((item) => {
+            <div className="space-y-2">
+              {contactInfo.map((item) => {
                 const Icon = item.icon;
                 return (
                   <a
@@ -215,22 +182,22 @@ export default function DigitalCard() {
             <div className="border-t border-border" />
 
             {/* Services Section */}
-            <div className="bg-accent/60 rounded-lg p-4 space-y-3 border border-accent-border">
+            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-5 space-y-3 border border-primary/20">
               <h2 
-                className="text-lg font-semibold text-foreground text-center"
+                className="text-lg font-bold text-foreground text-center mb-1"
                 data-testid="text-services-title"
               >
                 Our Services
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {services.map((service, index) => (
                   <div
                     key={service}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-3 bg-background/40 rounded-md px-3 py-2 hover-elevate transition-all"
                     data-testid={`text-service-${index}`}
                   >
                     <svg 
-                      className="w-4 h-4 text-primary flex-shrink-0" 
+                      className="w-5 h-5 text-primary flex-shrink-0" 
                       fill="currentColor" 
                       viewBox="0 0 20 20"
                     >
