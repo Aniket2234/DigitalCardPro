@@ -334,7 +334,7 @@ export default function DigitalCard() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <a
                     href={`tel:${companyInfo.mobile.replace(/[^0-9]/g, '')}`}
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all group"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-black hover:border-primary hover:shadow-md transition-all group"
                     data-testid="link-mobile"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -350,7 +350,7 @@ export default function DigitalCard() {
 
                   <a
                     href={`mailto:${companyInfo.email}`}
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all group"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-black hover:border-primary hover:shadow-md transition-all group"
                     data-testid="link-email"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -368,7 +368,7 @@ export default function DigitalCard() {
                     href={`https://${companyInfo.website}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all group"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-black hover:border-primary hover:shadow-md transition-all group"
                     data-testid="link-website"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -388,7 +388,7 @@ export default function DigitalCard() {
                   <Button
                     onClick={() => setIsFlipped(!isFlipped)}
                     variant="outline"
-                    className="w-full max-w-xs"
+                    className="w-full max-w-xs border-black"
                     data-testid="button-flip-card"
                   >
                     View Projects & Companies
